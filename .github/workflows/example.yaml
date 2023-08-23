@@ -19,3 +19,8 @@ jobs:
       - run: |
           pip install eyes-robotframework
           robot test_propagation.robot
+      - uses: actions/upload-artifact@v3
+        with:
+          name: results
+          path: "*"
+
