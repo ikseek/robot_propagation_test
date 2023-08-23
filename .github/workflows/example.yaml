@@ -1,0 +1,21 @@
+name: Test
+
+run-name: Test (${{inputs.packages}})
+
+on:
+  push:
+
+env:
+  APPLITOOLS_API_KEY: ${{secrets.APPLITOOLS_API_KEY}}
+
+jobs:
+  example_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - run: |
+          pip install eyes-robotframework
+          robot test_propagation.robot
