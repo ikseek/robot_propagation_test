@@ -10,17 +10,19 @@ env:
 
 jobs:
   example_test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - run: |
-          pip install eyes-robotframework
-          robot test_propagation.robot
+      - run: pip install eyes-robotframework
+      - run: robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
-          name: results
+          name: ${{matrix.os}}
           path: "*"
 

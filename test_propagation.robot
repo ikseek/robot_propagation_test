@@ -8,7 +8,7 @@ Test Teardown     Teardown
 
 *** Keywords ***
 Setup
-    Open Browser    https://demo.applitools.com/index_v2.html    headlesschrome
+    Open Browser    https://demo.applitools.com    headlesschrome
     Eyes Open
 
 
