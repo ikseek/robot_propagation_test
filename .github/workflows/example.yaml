@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - run: pip install eyes-robotframework==5.12.4
+      - run: pip install robotframework==5.0.1 eyes-robotframework==5.12.4
       - run: robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
@@ -31,11 +31,9 @@ jobs:
     container: oraclelinux:7
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.9.9"
-      - run: pip install eyes-robotframework==5.12.4
-      - run: robot test_propagation.robot
+      - run: yum install -y python3
+      - run: pip3 install robotframework==5.0.1 eyes-robotframework==5.12.4
+      - run: python3 -m robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
           name: oracle
