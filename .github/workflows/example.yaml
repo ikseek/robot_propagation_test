@@ -41,7 +41,7 @@ jobs:
           cd ..
           rm -rf Python-3.9.9
           
-          python3.9 -m pip install urllib3<2 robotframework==5.0.1 eyes-robotframework==5.12.4
+          python3.9 -m pip install "urllib3<2" robotframework==5.0.1 eyes-robotframework==5.12.4
           python3.9 -m robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
