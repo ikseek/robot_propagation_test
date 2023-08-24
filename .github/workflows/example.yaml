@@ -32,7 +32,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          yum install -y gcc openssl-devel bzip2-devel libffi-devel zlib-devel make perl
+          yum install -y gcc openssl-devel bzip2-devel libffi-devel zlib-devel make unzip
+          yum-config-manager --enable ol7_optional_latest
+          curl -OL  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+          yum -y localinstall google-chrome-stable_current_x86_64.rpm
+          curl -OL https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.0/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip
+          mv chromedriver-linux64/chromedriver /usr/local/bin/
+          
           curl -OL https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz 
           tar xzf Python-3.9.9.tgz
           cd Python-3.9.9
