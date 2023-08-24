@@ -35,7 +35,7 @@ jobs:
           yum install -y oracle-softwarecollection-release-el7
           yum install -y rh-python38
           scl enable rh-python38 bash
-          pip3 install robotframework==5.0.1 eyes-robotframework==5.12.4
+          python3 -m pip install robotframework==5.0.1 eyes-robotframework==5.12.4
           python3 -m robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
