@@ -31,9 +31,12 @@ jobs:
     container: oraclelinux:7
     steps:
       - uses: actions/checkout@v3
-      - run: yum install -y python3
-      - run: pip3 install robotframework==5.0.1 eyes-robotframework==5.12.4
-      - run: python3 -m robot test_propagation.robot
+      - run: |
+          yum install -y oracle-softwarecollection-release-el7
+          yum install -y rh-python38
+          scl enable rh-python38 bash
+          pip3 install robotframework==5.0.1 eyes-robotframework==5.12.4
+          python3 -m robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
           name: oracle
