@@ -8,7 +8,7 @@ Test Teardown     Teardown
 
 *** Keywords ***
 Setup
-    Open Browser    https://demo.applitools.com    headlesschrome
+    Open Browser    https://demo.applitools.com    headlesschrome  options=add_argument("no-sandbox")
     Eyes Open
 
 
