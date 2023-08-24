@@ -33,13 +33,6 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           yum install -y gcc openssl-devel bzip2-devel libffi-devel zlib-devel make perl
-          curl -OL https://ftp.openssl.org/source/openssl-1.1.1e.tar.gz
-          tar xzf openssl-1.1.1e.tar.gz
-          cd openssl-1.1.1e
-          ./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib no-shared zlib-dynamic
-          make install
-          cd ..
-          rm -rf openssl-1.1.1e
           curl -OL https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz 
           tar xzf Python-3.9.9.tgz
           cd Python-3.9.9
@@ -48,7 +41,7 @@ jobs:
           cd ..
           rm -rf Python-3.9.9
           
-          python3.9 -m pip install robotframework==5.0.1 eyes-robotframework==5.12.4
+          python3.9 -m pip install urllib3<2 robotframework==5.0.1 eyes-robotframework==5.12.4
           python3.9 -m robot test_propagation.robot
       - uses: actions/upload-artifact@v3
         with:
