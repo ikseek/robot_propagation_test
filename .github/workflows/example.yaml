@@ -32,9 +32,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          yum install -y oracle-softwarecollection-release-el7
-          yum install -y rh-python38
-          source /opt/rh/rh-python38/enable
+          yum install gcc openssl-devel bzip2-devel libffi-devel zlib-devel make
+          curl -OL https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz 
+          tar xzf Python-3.9.9.tgz
+          cd Python-3.9.9
+          ./configure --enable-optimizations 
+          make altinstall
+          cd ..
           python3 -m pip install robotframework==5.0.1 eyes-robotframework==5.12.4
           python3 -m robot test_propagation.robot
       - uses: actions/upload-artifact@v3
